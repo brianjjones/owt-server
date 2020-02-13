@@ -9,14 +9,14 @@ services:
         - http_proxy
         - https_proxy
     image: owt-server
-  owt-server-conference:
+  owt-server-conference-bjones:
     build:
       context: .
       dockerfile: Dockerfile-conference
       args:
         - http_proxy
         - https_proxy
-    image: owt-server-conference
+    image: owt-server-conference-bjones
     network_mode: host
     ports:
       - "3004:3004"

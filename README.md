@@ -27,7 +27,7 @@ The media server can be built on following platforms:
 ### Instructions
 In the root of the repository:
 1. Build native components: `scripts/build.js -t all --check`.
-2. Pack built components and js files: `scripts/pack.js -t all --install-module --sample-path ${webrtc-javascript-sdk-sample-conference-dist}`.
+2. Pack built components and js files: `scripts/pack.js -t all --install-module --app-path ${webrtc-javascript-sdk-sample-conference-dist}`.
 
 The ${webrtc-javascript-sdk-sample-conference-dist} is built from owt-javascript-sdk, e.g. `~/owt-client-javascript/dist/sample/conference`, see https://github.com/open-webrtc-toolkit/owt-client-javascript for details.
 
