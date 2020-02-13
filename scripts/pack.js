@@ -33,7 +33,7 @@ optParser.addOption('h', 'help', 'boolean', 'Show help');
 
 const options = optParser.parseArgs(process.argv);
 console.log('BJONES options are ');
-let keys = Object.keys(d);
+let keys = Object.keys(options);
 for (var i=0; i < keys.length; i++) {
   console.log(keys[i] + " == " + options[keys[i]] + " ## BJONES");
 }
