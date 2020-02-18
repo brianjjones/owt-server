@@ -618,7 +618,9 @@ function packSamples() {
   execSync(`mkdir -p ${distDir}/apps`);
   console.log('\x1b[32mApps folder created in :', distDir, '\x1b[0m');
   execSync(`cp -a ${appPath} ${distDir}/apps/current_app`);
-  var appJSON = JSON.parse('${distDir}/apps/current_app/package.json')['main'];
+  console.log(distDir + '/apps/current_app/package.json BJONES ');
+  var jsonTXT = execSync(`cat ${distDir}/apps/current_app/package.json`);
+  var appJSON = JSON.parse(jsonTXT)["main"];
   console.log(appJSON);
   if (!appJSON === undefined) {
     console.log("\x1b[31mError:BJONES No main js file for the app\x1b[0m");
