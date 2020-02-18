@@ -620,6 +620,7 @@ function packSamples() {
   execSync(`cp -a ${appPath} ${distDir}/apps/current_app`);
   console.log(distDir + '/apps/current_app/package.json BJONES ');
   var jsonTXT = execSync(`cat ${distDir}/apps/current_app/package.json`);
+  console.log(jsonTXT + " BJONES ----------");
   var appJSON = JSON.parse(jsonTXT)["main"];
   console.log(appJSON);
   if (!appJSON === undefined) {
