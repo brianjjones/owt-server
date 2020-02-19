@@ -7,11 +7,7 @@ ENV APP_PATH=/owt-client-javascript/dist/samples/conference
 
 WORKDIR /owt-server
 
-RUN echo BJONES running test BJONES1
-RUN echo BJONES PATH == $APP_PATH *BJONES2
-RUN echo BJONES running test BJONES3
 RUN ./scripts/build.js -t all --check
 RUN ./scripts/pack.js -t all --install-module --app-path $APP_PATH .
-RUN echo BJONES DONE WITH pack.js BJONES4
 
 RUN ./dist/video_agent/install_openh264.sh

@@ -5,7 +5,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // packing script
-console.log('BJONES STARTING pack.js');
 
 const fs = require('fs');
 const path = require('path');
@@ -32,11 +31,7 @@ optParser.addOption('wf', 'with-ffmpeg', 'boolean', 'Whether pack ffmpeg library
 optParser.addOption('h', 'help', 'boolean', 'Show help');
 
 const options = optParser.parseArgs(process.argv);
-console.log('BJONES options are ');
-let keys = Object.keys(options);
-for (var i=0; i < keys.length; i++) {
-  console.log(keys[i] + " == " + options[keys[i]] + " ## BJONES");
-}
+
 const rootDir = path.join(path.dirname(module.filename), '..');
 const distDir = path.join(rootDir, options.debug ? 'dist-debug' : 'dist');
 const depsDir = path.join(rootDir, 'build/libdeps/build');
@@ -551,8 +546,6 @@ function encrypt(target) {
 }
 
 function packScripts() {
-  console.log('\x1b[32mBJONES Pack scripts\x1b[0m');
-
   const binDir = path.join(distDir, 'bin');
   execSync(`rm -rf ${binDir}`);
   execSync(`mkdir -p ${binDir}`);
@@ -603,32 +596,25 @@ function packScripts() {
 }
 
 function packSamples() {
-  console.log('\x1b[32m BJONES Pack scripts 1\x1b[0m');
   if (!options['app-path']) return;
-  console.log('\x1b[32m BJONES Pack scripts 2\x1b[0m');
   chdir(originCwd);
-  console.log('\x1b[32m BJONES Pack scripts 3\x1b[0m');
   var appPath = options['app-path'];
   if (!fs.existsSync(appPath)) {
     console.log(`\x1b[31mError: ${appPath} does not exist\x1b[0m`);
     return;
   }
-  console.log('\x1b[32m BJONES Pack scripts 4\x1b[0m');
   execSync(`rm -rf ${distDir}/apps`);
   execSync(`mkdir -p ${distDir}/apps`);
   console.log('\x1b[32mApps folder created in :', distDir, '\x1b[0m');
   execSync(`cp -a ${appPath} ${distDir}/apps/current_app`);
-  console.log(distDir + '/apps/current_app/package.json BJONES ');
   var jsonTXT = execSync(`cat ${distDir}/apps/current_app/package.json`);
-  console.log(jsonTXT + " BJONES ----------");
   var appJSON = JSON.parse(jsonTXT)["main"];
   console.log(appJSON);
   if (!appJSON === undefined) {
-    console.log("\x1b[31mError:BJONES No main js file for the app\x1b[0m");
+    console.log("\x1b[31mError: No main js file for the app\x1b[0m");
     return;
   } else {
     // Make a soft link to the main JS file node.js should call
-    console.log('\x1b[32mBJONES Installing app:', appPath, '\x1b[0m');
     execSync(`ln -sf ${distDir}/apps/current_app/${appJSON} ${distDir}/apps/current_app/main.js`);
   }
   const certScript = `${distDir}/apps/current_app/initcert.js`;
@@ -661,7 +647,7 @@ getTargets()
   .then(packSamples)
   .then(archive)
   .then(() => {
-    console.log('\x1b[32mBJONES Work finished in directory:', distDir, '\x1b[0m');
+    console.log('\x1b[32m Work finished in directory:', distDir, '\x1b[0m');
   })
 
 .catch((err) => {
