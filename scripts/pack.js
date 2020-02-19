@@ -629,7 +629,7 @@ function packSamples() {
   } else {
     // Make a soft link to the main JS file node.js should call
     console.log('\x1b[32mBJONES Installing app:', appPath, '\x1b[0m');
-    execSync(`ln -sf ${distDir}/apps/current_app/${appJSON} main.js`);
+    execSync(`ln -sf ${distDir}/apps/current_app/${appJSON} ${distDir}/apps/current_app/main.js`);
   }
   const certScript = `${distDir}/apps/current_app/initcert.js`;
   if (fs.existsSync(certScript))
